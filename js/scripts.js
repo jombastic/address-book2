@@ -60,8 +60,13 @@ $(function() {
     addAddressFields();
   });
 
+  $("input").keypress(function() {
+    $(this).parents(".form-group").addClass("has-success");
+  });
+
   $("form#new-contact").submit(function(event) {
     event.preventDefault();
+    $("input").parents(".form-group").removeClass("has-success");
 
     var inputtedFirstName = $("input#new-first-name").val();
     var inputtedLastName = $("input#new-last-name").val();

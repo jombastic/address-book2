@@ -10,3 +10,7 @@
 .contact:hover {
   text-decoration: underline;
 }
+
+.inputs {
+  background-color: red;
+}
