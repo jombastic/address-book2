@@ -28,32 +28,36 @@ function resetFields() {
   $("input.new-state").val("");
 };
 
+function addAddressFields() {
+  $("#new-addresses").append('<div class="new-address">' +
+    '<div class="form-group">' +
+      '<label for="address-type">Address type</label>' +
+      '<select class="form-control address-type">' +
+        '<option>Home</option>' +
+        '<option>Work</option>' +
+        '<option>Abroad</option>' +
+        '<option>Other</option>' +
+      '</select>' +
+    '</div>' +
+    '<div class="form-group">' +
+      '<label for="new-street">Street</label>' +
+      '<input type="text" class="form-control new-street" />' +
+    '</div>' +
+    '<div class="form-group">' +
+      '<label for="new-city">City</label>' +
+      '<input type="text" class="form-control new-city" />' +
+    '</div>' +
+    '<div class="form-group">' +
+      '<label for="new-state">State</label>' +
+      '<input type="text" class="form-control new-state" />' +
+    '</div>' +
+  '</div>');
+};
+
 //user interface logic
 $(function() {
   $("#add-address").click(function() {
-    $("#new-addresses").append('<div class="new-address">' +
-      '<div class="form-group">' +
-        '<label for="address-type">Address type</label>' +
-        '<select class="form-control address-type">' +
-          '<option>Home</option>' +
-          '<option>Work</option>' +
-          '<option>Abroad</option>' +
-          '<option>Other</option>' +
-        '</select>' +
-      '</div>' +
-      '<div class="form-group">' +
-        '<label for="new-street">Street</label>' +
-        '<input type="text" class="form-control new-street" />' +
-      '</div>' +
-      '<div class="form-group">' +
-        '<label for="new-city">City</label>' +
-        '<input type="text" class="form-control new-city" />' +
-      '</div>' +
-      '<div class="form-group">' +
-        '<label for="new-state">State</label>' +
-        '<input type="text" class="form-control new-state" />' +
-      '</div>' +
-    '</div>');
+    addAddressFields();
   });
 
   $("form#new-contact").submit(function(event) {
