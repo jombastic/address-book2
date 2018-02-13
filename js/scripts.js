@@ -87,5 +87,6 @@ $(function() {
     });
 
     resetFields();
+    $(".new-address").not(":first-child").remove();
   });
 });
