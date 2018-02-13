@@ -9,20 +9,38 @@ Contact.prototype.fullName = function() {
   return this.firstName + " " + this.lastName;
 };
 
-function Address(street, city, state) {
+function Address(type, street, city, state) {
+  this.addressType = type;
   this.street = street;
   this.city = city;
   this.state = state;
 };
 
 Address.prototype.fullAddress = function() {
-  return this.street + ", " + this.city + ", " + this.state;
+  return "Address type: " + this.addressType + ", " + this.street + ", " + this.city + ", " + this.state;
+};
+
+function resetFields() {
+  $("input#new-first-name").val("");
+  $("input#new-last-name").val("");
+  $("input.new-street").val("");
+  $("input.new-city").val("");
+  $("input.new-state").val("");
 };
 
 //user interface logic
 $(function() {
   $("#add-address").click(function() {
     $("#new-addresses").append('<div class="new-address">' +
+      '<div class="form-group">' +
+        '<label for="address-type">Address type</label>' +
+        '<select class="form-control address-type">' +
+          '<option>Home</option>' +
+          '<option>Work</option>' +
+          '<option>Abroad</option>' +
+          '<option>Other</option>' +
+        '</select>' +
+      '</div>' +
       '<div class="form-group">' +
         '<label for="new-street">Street</label>' +
         '<input type="text" class="form-control new-street" />' +
@@ -47,10 +65,11 @@ $(function() {
     var newContact = new Contact(inputtedFirstName, inputtedLastName);
 
     $(".new-address").each(function() {
+      var selectedAddressType = $(this).find("select.address-type").val();
       var inputtedStreet = $(this).find("input.new-street").val();
       var inputtedCity = $(this).find("input.new-city").val();
       var inputtedState = $(this).find("input.new-state").val();
-      var newAddress = new Address(inputtedStreet, inputtedCity, inputtedState);
+      var newAddress = new Address(selectedAddressType, inputtedStreet, inputtedCity, inputtedState);
       newContact.addresses.push(newAddress);
     });
 
@@ -67,10 +86,6 @@ $(function() {
       });
     });
 
-    $("input#new-first-name").val("");
-    $("input#new-last-name").val("");
-    $("input.new-street").val("");
-    $("input.new-city").val("");
-    $("input.new-state").val("");
+    resetFields();
   });
 });
